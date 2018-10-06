@@ -36,13 +36,13 @@ This directive enables parallax effect on `ion-header` elements to display a cov
 Just add the attribute `parallax` to any `<ion-header>` element:
 
 ```
-<ion-header parallax></parallax>
+<ion-header parallax></ion-header>
 ```
 
 Optional attributes:
 
 * `imageUrl`: The background image to show while expanded.
-* `fadeTitle`: It will make transparent the text in `<ion-title>` or any `.title` element in the header and show it when scrolled. Default is `false`.
+* `fadeTitle`: It will make transparent the text from `<ion-title>` or any `.title` element in the header, and show it when scrolled. Default is `false`.
 * `maximumHeight`: The height for the header when expanded. Default is `200`.
 * `parallaxColor`: The color (web hex formatted) to show while the header is expanded if no `imageUrl` is set. When scrolled it will fade to the navbar/toolbar's color or the one configured in `<navbar color="">` attribute.
 
