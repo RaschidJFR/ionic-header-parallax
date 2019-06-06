@@ -1,0 +1,1 @@
+The file `parallax.scss` will be removed from this folder in the future. Please use `/sass/ionic-header-parallax.scss`

@@ -1,0 +1,29 @@
+.header[parallax] {
+	
+	.toolbar {
+		height: 100%;
+		
+		.toolbar-background{
+			border-width: 0;
+			
+			.overlay {
+				background-size: cover;
+				background-position: center;
+				background-color: transparent;
+			}
+		}
+
+		.bar-buttons,
+		.back-button {
+			position: relative;
+		}
+	}
+}
+
+.scroll-content[parallax]{
+	margin: 0 !important;
+}
+
+.fixed-content[parallax]{
+	margin-top: 0 !important;
+}

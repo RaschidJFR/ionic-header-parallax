@@ -1,5 +1,7 @@
 # Parallax Header Directive for Ionic v3 #
 
+>**Note**: Currently tested on v3. V4 is on its way.
+
 This directive enables parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition it to the normal navbar when content is scrolled down.
 
 ![alt text](https://raw.githubusercontent.com/RaschidGithub/ionic-header-parallax/master/gif.gif)
@@ -9,17 +11,17 @@ This directive enables parallax effect on `ion-header` elements to display a cov
 1 Install module:
 
 ```
- $ npm ion-header-parallax
+ $ npm ionic-header-parallax
  ```
 
 
 2 Import stylesheet into `variables.scss`:
 
 ```
- @import "../node_modules/ionic-header-parallax/dist/parallax.scss";		//<- Add this line
+ @import "../node_modules/ionic-header-parallax/dist/sass/ionic-header-parallax.scss";		//<- Add this line
  ```
 
-3 Import the directive into `app.module.ts`:
+3 Import the directive into your module (usually `app.module.ts`):
 
 ```
 @NgModule({
@@ -65,3 +67,11 @@ Example:
 	<div style="height: 200vh;"></div>
 </ion-content>
 ```
+
+## Credits ##
+This is an implementation of the really great tutorial by [Josh Morony](https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/). Thanks.
+
+## Contributing ##
+
+I don't plan to be full-time mantaining this package, but as I'm usually developing in Ionic I'll be glad to update it any time I make some upgrades for myself.
+Contributions are very welcome. The source files (actually just one only .ts file) can are found in the [repo](https://github.com/RaschidGithub/ionic-header-parallax).
