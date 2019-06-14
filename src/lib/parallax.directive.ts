@@ -7,7 +7,7 @@ export class ParallaxDirective implements AfterViewInit {
   @Input() imageUrl: string;
   @Input() expandedColor: string;
   @Input() titleColor: string;
-  @Input() maximumHeight = 200;
+  @Input() maximumHeight = 300;
 
   header: HTMLElement;
   toolbar: HTMLElement;
@@ -65,15 +65,17 @@ export class ParallaxDirective implements AfterViewInit {
     this.header.appendChild(this.colorOverlay);
 
     // Copy title and buttons
-    this.overlayTitle = this.ionTitle.cloneNode(true) as HTMLElement;
-    this.renderer.addClass(this.overlayTitle, 'parallax-title');
-    setTimeout(() => {
-      const toolbarTitle = this.overlayTitle.shadowRoot.querySelector('.toolbar-title');
-      this.renderer.setStyle(toolbarTitle, 'pointer-events', 'unset');
-    });
+    this.overlayTitle = this.ionTitle && this.ionTitle.cloneNode(true) as HTMLElement;
+    if (this.overlayTitle) {
+      this.renderer.addClass(this.overlayTitle, 'parallax-title');
+      setTimeout(() => {
+        const toolbarTitle = this.overlayTitle.shadowRoot.querySelector('.toolbar-title');
+        this.renderer.setStyle(toolbarTitle, 'pointer-events', 'unset');
+      });
+    }
 
-    this.imageOverlay.appendChild(this.overlayTitle);
-    this.imageOverlay.appendChild(this.barButtons);
+    if (this.overlayTitle) { this.imageOverlay.appendChild(this.overlayTitle); }
+    if (this.barButtons) { this.imageOverlay.appendChild(this.barButtons); }
   }
 
   initStyles() {
@@ -91,11 +93,13 @@ export class ParallaxDirective implements AfterViewInit {
 
     // header and title
     this.renderer.setStyle(this.header, 'position', 'relative');
-    this.renderer.setStyle(this.overlayTitle, 'color', this.titleColor);
-    this.renderer.setStyle(this.overlayTitle, 'position', 'absolute');
-    this.renderer.setStyle(this.overlayTitle, 'width', '100%');
-    this.renderer.setStyle(this.overlayTitle, 'height', '100%');
-    this.renderer.setStyle(this.overlayTitle, 'text-align', 'center');
+    if (this.overlayTitle) {
+      this.renderer.setStyle(this.overlayTitle, 'color', this.titleColor);
+      this.renderer.setStyle(this.overlayTitle, 'position', 'absolute');
+      this.renderer.setStyle(this.overlayTitle, 'width', '100%');
+      this.renderer.setStyle(this.overlayTitle, 'height', '100%');
+      this.renderer.setStyle(this.overlayTitle, 'text-align', 'center');
+    }
 
     // color overlay
     this.renderer.setStyle(this.colorOverlay, 'background-color', this.originalToolbarBgColor);
@@ -120,10 +124,12 @@ export class ParallaxDirective implements AfterViewInit {
     this.renderer.setStyle(this.toolbarBackground, 'background-color', this.originalToolbarBgColor);
 
     // .bar-buttons
-    this.renderer.setStyle(this.barButtons, 'pointer-events', 'all');
-    Array.from(this.barButtons.children).forEach(btn => {
-      this.renderer.setStyle(btn, 'color', this.titleColor);
-    });
+    if (this.barButtons) {
+      this.renderer.setStyle(this.barButtons, 'pointer-events', 'all');
+      Array.from(this.barButtons.children).forEach(btn => {
+        this.renderer.setStyle(btn, 'color', this.titleColor);
+      });
+    }
 
     // .scroll-content
     if (this.scrollContent) {
@@ -181,20 +187,16 @@ export class ParallaxDirective implements AfterViewInit {
       targetHeight > this.headerMinHeight ? 'transparent' : this.originalToolbarBgColor);
 
     // .bar-buttons
-    if (targetHeight > this.headerMinHeight) {
-      this.imageOverlay.append(this.barButtons);
-    } else {
-      this.toolbar.append(this.barButtons);
-      Array.from(this.barButtons.children).forEach(btn => {
-        this.renderer.setStyle(btn, 'color', 'unset');
-      });
+    if (this.barButtons) {
+      if (targetHeight > this.headerMinHeight) {
+        this.imageOverlay.append(this.barButtons);
+      } else {
+        this.toolbar.append(this.barButtons);
+        Array.from(this.barButtons.children).forEach(btn => {
+          this.renderer.setStyle(btn, 'color', 'unset');
+        });
+      }
     }
-
-    // .bar-buttons
-    // this.barButtons.forEach(element => {
-    //   const h = element.offsetHeight;
-    //   this.renderer.setStyle(element, 'bottom', `${this.toolbar.offsetHeight / 2 - this.headerMinHeight / 2}px`);
-    // });
 
     this.ticking = false;
   }
