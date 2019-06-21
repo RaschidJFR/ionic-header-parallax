@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.1.2](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.2)
+
+### Changed
+* Updated Readme.
+
 ## [2.1.1](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.1)
 
 ### Fixed
