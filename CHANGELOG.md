@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.1.1](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.1)
+
+### Fixed
+* [Issue #8: titleColor not working as expected ionic4](https://github.com/RaschidJFR/ionic-header-parallax/issues/8)
+
 ## [2.1.0](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.0)
 
 ### Changed

@@ -190,6 +190,9 @@ export class ParallaxDirective implements AfterViewInit {
     if (this.barButtons) {
       if (targetHeight > this.headerMinHeight) {
         this.imageOverlay.append(this.barButtons);
+        Array.from(this.barButtons.children).forEach(btn => {
+          this.renderer.setStyle(btn, 'color', this.titleColor);
+        });
       } else {
         this.toolbar.append(this.barButtons);
         Array.from(this.barButtons.children).forEach(btn => {

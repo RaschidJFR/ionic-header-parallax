@@ -1,6 +1,6 @@
 # Parallax Header Directive for Ionic v4 #
 
-> For Ionic 3 use version [1.0.1](https://www.npmjs.com/package/ionic-header-parallax/v/1.0.1) of this package.
+> For Ionic 3 use version [1.0.1](https://www.npmjs.com/package/ionic-header-parallax/v/1.0.1) of this package: `$ npm ionic-header-parallax@1.0.1`.
 
 This directive enables parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition it to the normal navbar when content is scrolled down.
 
@@ -51,6 +51,9 @@ Example:
 	Some content here
 </ion-content>
 ```
+
+## Modifying the Source Code ##
+In case you need to make your own modifications, the package is pritty simple, just 1 .ts file. You can clone the repo wherever in your ionic project (usually inside  the `directives` folder): `$ git clone https://github.com/RaschidJFR/ionic-header-parallax.git`. Then edit the file `src/lib/parallax.directive.ts`.
 
 ## Credits ##
 This is an implementation of this awesome tutorial on v2 by [Josh Morony](https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/). Thanks.
