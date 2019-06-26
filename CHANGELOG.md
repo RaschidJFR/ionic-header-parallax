@@ -34,6 +34,13 @@ Upgraded to Ionic 4
 ### Removed
 * `fadeTitle` attribute no longer needed as it is now the default behaviour.
 
+## [1.1.0](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/1.1.0)
+
+### Changed
+ * Exporting module instead of directive: IonicParallaxHeaderModule instead of ParallaxDirective
+
+### Fixed
+ * Issue #6: ParallaxDirective Not Found
 
 ## [1.0.1](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/1.0.1)
 First release, for Ionic 3

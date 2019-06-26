@@ -1,20 +1,20 @@
-import { Directive, ElementRef, Input, Renderer2, AfterViewInit } from '@angular/core';
+import { Directive, Renderer, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: 'ion-header[parallax]'
+  selector: 'ion-header[parallax]', // Attribute selector
 })
-export class ParallaxDirective implements AfterViewInit {
-  @Input() imageUrl: string;
-  @Input() expandedColor: string;
-  @Input() titleColor: string;
-  @Input() maximumHeight = 300;
+export class ParallaxDirective {
+  @Input('imageUrl') backgroundImageUrl: string = '';
+  @Input('parallaxColor') expandedColor: string = '#ab26c3';
+  @Input('fadeTitle') fadeTitle: boolean = false;
+  @Input('maximumHeight') headerMaxHeight: number = 200;
 
   header: HTMLElement;
-  toolbar: HTMLElement;
+  @Input() toolbar: HTMLElement;
   toolbarBackground: HTMLElement;
-  imageOverlay: HTMLElement;
-  colorOverlay: HTMLElement;
-  barButtons: HTMLElement;
+  toolbarBackgroundOverlay: HTMLElement;
+  barButtons: HTMLElement[];
+  fixedContent: HTMLElement;
   scrollContent: HTMLElement;
   headerHeight: any;
   headerMinHeight: number;
@@ -24,128 +24,37 @@ export class ParallaxDirective implements AfterViewInit {
   lastScrollTop: any;
   ticking: any;
   originalToolbarBgColor: string;
-  overlayTitle: HTMLElement;
   ionTitle: HTMLElement;
-  overlayButtons: HTMLElement[];
-  scrollContentPaddingTop;
 
-  constructor(public headerRef: ElementRef<HTMLElement>, public renderer: Renderer2) {
+  constructor(public headerRef: ElementRef, public renderer: Renderer) {
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.initElements();
-      this.initStyles();
-      this.initEvents();
-    });
-  }
+  ngAfterViewInit() {
 
-  initElements() {
-    const parentElement = this.headerRef.nativeElement.parentElement;
+    let parentElement = this.headerRef.nativeElement.parentElement;
     this.header = this.headerRef.nativeElement;
+    this.toolbar = this.headerRef.nativeElement.getElementsByClassName('toolbar')[0];
+    if (!this.toolbar) throw 'Parallax directive requires a toolbar or navbar element on the page to work.'
+    this.ionTitle = this.toolbar.getElementsByClassName('title')[0] as HTMLElement;
+    this.toolbarBackground = this.headerRef.nativeElement.getElementsByClassName('toolbar-background')[0];
+    this.toolbarBackground.innerHTML = `<div style="width:100%; height:100%" class="overlay"></div>`;
+    this.toolbarBackgroundOverlay = this.toolbarBackground.getElementsByClassName('overlay')[0] as HTMLElement;
+    this.barButtons = Array.from(this.headerRef.nativeElement.getElementsByClassName('bar-buttons'));
+    let backButton = this.headerRef.nativeElement.getElementsByClassName('back-button')[0];
+    if (backButton) this.barButtons.push(backButton);
+    this.fixedContent = parentElement.getElementsByClassName('fixed-content')[0];
+    this.scrollContent = parentElement.getElementsByClassName('scroll-content')[0];
+    if (!this.scrollContent) throw 'Parallax directive requires a <ion-content> element on the page to work.'
 
-    this.toolbar = this.header.querySelector('ion-toolbar');
-    if (!this.toolbar) { throw new Error('Parallax directive requires a toolbar or navbar element on the page to work.'); }
-    this.ionTitle = this.toolbar.querySelector('ion-title');
-    this.toolbarBackground = this.toolbar.shadowRoot.querySelector('.toolbar-background');
-
-    this.barButtons = this.headerRef.nativeElement.querySelector('ion-buttons');
-    const ionContent = parentElement.querySelector('ion-content');
-    this.scrollContent = ionContent.shadowRoot.querySelector('.inner-scroll');
-    if (!this.scrollContent) { throw new Error('Parallax directive requires an <ion-content> element on the page to work.'); }
-
-    // Create image overlay
-    this.imageOverlay = this.renderer.createElement('div');
-    this.renderer.addClass(this.imageOverlay, 'image-overlay');
-
-    this.colorOverlay = this.renderer.createElement('div');
-    this.renderer.addClass(this.colorOverlay, 'color-overlay');
-
-    this.colorOverlay.appendChild(this.imageOverlay);
-    this.header.appendChild(this.colorOverlay);
-
-    // Copy title and buttons
-    this.overlayTitle = this.ionTitle && this.ionTitle.cloneNode(true) as HTMLElement;
-    if (this.overlayTitle) {
-      this.renderer.addClass(this.overlayTitle, 'parallax-title');
-      setTimeout(() => {
-        const toolbarTitle = this.overlayTitle.shadowRoot.querySelector('.toolbar-title');
-        this.renderer.setStyle(toolbarTitle, 'pointer-events', 'unset');
-      });
-    }
-
-    if (this.overlayTitle) { this.imageOverlay.appendChild(this.overlayTitle); }
-    if (this.barButtons) { this.imageOverlay.appendChild(this.barButtons); }
-  }
-
-  initStyles() {
     this.headerHeight = this.scrollContent.clientHeight;
     this.ticking = false;
 
-    if (!this.scrollContent || !toolbar) { return; }
-
-    // fetch styles
-    this.maximumHeight = parseFloat(this.maximumHeight.toString());
-    this.headerMinHeight = this.toolbar.offsetHeight;
-    this.scrollContentPaddingTop = window.getComputedStyle(this.scrollContent, null).paddingTop.replace('px', '');
-    this.scrollContentPaddingTop = parseFloat(this.scrollContentPaddingTop);
-    this.originalToolbarBgColor = window.getComputedStyle(this.toolbarBackground, null).backgroundColor;
-
-    // header and title
-    this.renderer.setStyle(this.header, 'position', 'relative');
-    if (this.overlayTitle) {
-      this.renderer.setStyle(this.overlayTitle, 'color', this.titleColor);
-      this.renderer.setStyle(this.overlayTitle, 'position', 'absolute');
-      this.renderer.setStyle(this.overlayTitle, 'width', '100%');
-      this.renderer.setStyle(this.overlayTitle, 'height', '100%');
-      this.renderer.setStyle(this.overlayTitle, 'text-align', 'center');
-    }
-
-    // color overlay
-    this.renderer.setStyle(this.colorOverlay, 'background-color', this.originalToolbarBgColor);
-    this.renderer.setStyle(this.colorOverlay, 'height', `${this.maximumHeight}px`);
-    this.renderer.setStyle(this.colorOverlay, 'position', 'absolute');
-    this.renderer.setStyle(this.colorOverlay, 'top', `${-this.headerMinHeight * 0}px`);
-    this.renderer.setStyle(this.colorOverlay, 'left', '0');
-    this.renderer.setStyle(this.colorOverlay, 'width', '100%');
-    this.renderer.setStyle(this.colorOverlay, 'z-index', '10');
-    this.renderer.setStyle(this.colorOverlay, 'pointer-events', 'none');
-
-    // image overlay
-    this.renderer.setStyle(this.imageOverlay, 'background-color', this.expandedColor);
-    this.renderer.setStyle(this.imageOverlay, 'background-image', `url(${this.imageUrl || ''})`);
-    this.renderer.setStyle(this.imageOverlay, 'height', `100%`);
-    this.renderer.setStyle(this.imageOverlay, 'width', '100%');
-    this.renderer.setStyle(this.imageOverlay, 'pointer-events', 'none');
-    this.renderer.setStyle(this.imageOverlay, 'background-size', 'cover');
-    this.renderer.setStyle(this.imageOverlay, 'background-position', 'center');
-
-    // .toolbar-background
-    this.renderer.setStyle(this.toolbarBackground, 'background-color', this.originalToolbarBgColor);
-
-    // .bar-buttons
-    if (this.barButtons) {
-      this.renderer.setStyle(this.barButtons, 'pointer-events', 'all');
-      Array.from(this.barButtons.children).forEach(btn => {
-        this.renderer.setStyle(btn, 'color', this.titleColor);
-      });
-    }
-
-    // .scroll-content
-    if (this.scrollContent) {
-      this.renderer.setAttribute(this.scrollContent, 'parallax', '');
-      this.renderer.setStyle(this.scrollContent, 'padding-top',
-        `${this.maximumHeight + this.scrollContentPaddingTop - this.headerMinHeight}px`);
-    }
-  }
-
-  initEvents() {
     window.addEventListener('resize', () => {
       this.headerHeight = this.scrollContent.clientHeight;
     }, false);
 
-    if (this.scrollContent) {
-      this.scrollContent.addEventListener('scroll', (e) => {
+    if (this.scrollContent)
+      this.scrollContent.addEventListener('scroll', () => {
 
         if (!this.ticking) {
           window.requestAnimationFrame(() => {
@@ -154,13 +63,49 @@ export class ParallaxDirective implements AfterViewInit {
         }
         this.ticking = true;
       });
+
+    if (!this.scrollContent || !toolbar) return;
+
+    // fetch styles
+    this.headerMaxHeight = parseFloat(this.headerMaxHeight.toString());
+    this.headerMinHeight = this.toolbar.offsetHeight
+    let scrollContentPaddingTop: any = window.getComputedStyle(this.scrollContent, null).paddingTop.replace('px', '');
+    scrollContentPaddingTop = parseFloat(scrollContentPaddingTop);
+    this.originalToolbarBgColor = window.getComputedStyle(this.toolbarBackground, null).backgroundColor;
+
+    // .header
+    this.renderer.setElementStyle(this.header, 'height', `${this.headerMaxHeight}px`);
+
+    // .toolbar .title
+    if (this.fadeTitle) this.renderer.setElementStyle(this.ionTitle, 'opacity', '0');
+
+    // .toolbar-background .overlay
+    this.renderer.setElementStyle(this.toolbarBackgroundOverlay, 'background-color', this.expandedColor);
+    this.renderer.setElementStyle(this.toolbarBackgroundOverlay, 'background-image', `url(${this.backgroundImageUrl || ''})`);
+
+    // .toolbar-background
+    this.renderer.setElementStyle(this.toolbarBackground, 'background-color', this.originalToolbarBgColor);
+
+    // .bar-buttons
+    this.barButtons.forEach(element => {
+      this.renderer.setElementStyle(element, 'bottom', `${this.toolbar.offsetHeight / 2 - this.headerMinHeight / 2}px`);
+    });
+
+    // .fixed-content
+    if (this.fixedContent) this.renderer.setElementAttribute(this.fixedContent, 'parallax', 'true');
+
+    // .scroll-content
+    if (this.scrollContent) {
+      this.renderer.setElementAttribute(this.scrollContent, 'parallax', 'true');
+      this.renderer.setElementStyle(this.scrollContent, 'padding-top', `${this.headerMaxHeight + scrollContentPaddingTop}px`);
     }
   }
 
   updateElasticHeader() {
-    if (!this.scrollContent || !toolbar) { return; }
+    if (!this.scrollContent || !toolbar) return;
 
     this.scrollTop = this.scrollContent.scrollTop;
+
     if (this.scrollTop >= 0) {
       this.translateAmt = this.scrollTop / 2;
       this.scaleAmt = 1;
@@ -169,38 +114,29 @@ export class ParallaxDirective implements AfterViewInit {
       this.scaleAmt = -this.scrollTop / this.headerHeight + 1;
     }
 
-    // Parallax total progress
-    this.headerMinHeight = this.toolbar.offsetHeight;
-    let progress = (this.maximumHeight - this.scrollTop - this.headerMinHeight) / (this.maximumHeight - this.headerMinHeight);
+    // Parallax progress
+    let progress = (this.headerMaxHeight - this.scrollTop - this.headerMinHeight) / (this.headerMaxHeight - this.headerMinHeight);
     progress = Math.max(progress, 0);
 
-    // ion-header: set height
-    let targetHeight = this.maximumHeight - this.scrollTop;
+    // header
+    let targetHeight = this.headerMaxHeight - this.scrollTop;
     targetHeight = Math.max(targetHeight, this.headerMinHeight);
+    this.renderer.setElementStyle(this.header, 'height', `${targetHeight}px`)
 
-    // .toolbar-background: change color
-    this.renderer.setStyle(this.imageOverlay, 'height', `${targetHeight}px`);
-    this.renderer.setStyle(this.imageOverlay, 'opacity', `${progress}`);
-    this.renderer.setStyle(this.colorOverlay, 'height', `${targetHeight}px`);
-    this.renderer.setStyle(this.colorOverlay, 'opacity', targetHeight > this.headerMinHeight ? '1' : '0');
-    this.renderer.setStyle(this.toolbarBackground, 'background-color',
-      targetHeight > this.headerMinHeight ? 'transparent' : this.originalToolbarBgColor);
+    // .toolbar .title
+    if (this.fadeTitle) this.renderer.setElementStyle(this.ionTitle, 'opacity', `${1 - progress}`);
+
+    // .toolbar-background
+    this.renderer.setElementStyle(this.toolbarBackgroundOverlay, 'opacity', `${progress}`);
+    this.renderer.setElementStyle(this.toolbarBackground, 'background-color', this.originalToolbarBgColor);
 
     // .bar-buttons
-    if (this.barButtons) {
-      if (targetHeight > this.headerMinHeight) {
-        this.imageOverlay.append(this.barButtons);
-        Array.from(this.barButtons.children).forEach(btn => {
-          this.renderer.setStyle(btn, 'color', this.titleColor);
-        });
-      } else {
-        this.toolbar.append(this.barButtons);
-        Array.from(this.barButtons.children).forEach(btn => {
-          this.renderer.setStyle(btn, 'color', 'unset');
-        });
-      }
-    }
+    this.barButtons.forEach(element => {
+      let h = element.offsetHeight;
+      this.renderer.setElementStyle(element, 'bottom', `${this.toolbar.offsetHeight / 2 - this.headerMinHeight / 2}px`);
+    });
 
     this.ticking = false;
+
   }
 }
