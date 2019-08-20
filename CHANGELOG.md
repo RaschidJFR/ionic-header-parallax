@@ -1,4 +1,7 @@
 # Changelog
+## [2.1.4](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.4) (2019-08-19)
+### Changed
+* Added contact details to Readme
 
 ## [2.1.3](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.3)
 

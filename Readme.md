@@ -53,12 +53,18 @@ Example:
 ```
 
 ## Modifying the Source Code ##
-In case you need to make your own modifications, the package is pritty simple, just 1 .ts file. You can clone the repo wherever in your ionic project (usually inside  the `directives` folder): `$ git clone https://github.com/RaschidJFR/ionic-header-parallax.git`. Then edit the file `src/lib/parallax.directive.ts`.
-
-## Credits ##
-This is an implementation of this awesome tutorial on v2 by [Josh Morony](https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/). Thanks.
+In case you need to make your own modifications, the package is pretty simple, just 1 .ts file. You can clone the repo wherever in your ionic project (usually inside  the `directives` folder): `$ git clone https://github.com/RaschidJFR/ionic-header-parallax.git`. Then edit the file `src/lib/parallax.directive.ts`.
 
 ## Contributing ##
 
-I don't plan to be full-time mantaining this package, but as I'm usually developing in Ionic I'll be glad to update it any time I make some upgrades for myself.
+I don't plan to be full-time maintaining this package, but as I'm usually developing in Ionic I'll be glad to update it any time I make some upgrades for myself.
 Contributions are very welcome. The source files can be found in the [repo](https://github.com/RaschidGithub/ionic-header-parallax).
+
+## Credits ##
+Raschid JF. Rafaelly
+
+<me@raschidjfr.dev>
+
+https://raschidjfr.dev
+
+This is an implementation of this awesome tutorial on v2 by [Josh Morony](https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/). Thanks.
