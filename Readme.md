@@ -4,14 +4,16 @@
 
 This directive enables parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition it to the normal navbar when content is scrolled down.
 
+[Live Demo](https://raschidjfr.github.io/ionic-header-parallax)
+
 ![alt text](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/master/gif.gif)
 
 ## Set Up ##
 
 1. Install package: `$ npm i ionic-header-parallax`.
-2. Import the directive into your desired module (usually `app.module.ts`):
+2. Import the directive into your desired module (usually `appmodule.ts`):
 
-```
+```ts
 import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
 
 @NgModule({
@@ -24,7 +26,7 @@ import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
 
 Just add the attribute `parallax` to any `<ion-header>` element:
 
-```
+```html
 <ion-header parallax></ion-header>
 ```
 
@@ -37,8 +39,8 @@ Optional attributes:
 
 Example:
 
-```
-<ion-header parallax imageUrl="https://picsum.photos/350" maximumHeight="350" expandedColor="#AAA" titleColor="black">
+```html
+<ion-header parallax imageUrl="https://picsum.photos/350" maximumHeight="350" expandedColor="#AAA" titleColor="white">
 
   <ion-toolbar color="primary">
     <ion-title>
@@ -52,19 +54,17 @@ Example:
 </ion-content>
 ```
 
-## Modifying the Source Code ##
-In case you need to make your own modifications, the package is pretty simple, just 1 .ts file. You can clone the repo wherever in your ionic project (usually inside  the `directives` folder): `$ git clone https://github.com/RaschidJFR/ionic-header-parallax.git`. Then edit the file `src/lib/parallax.directive.ts`.
+## Modifying the Source Code / Contributing ##
+I don't plan to be maintaining this package full-time, but as I'm usually developing in Ionic I'll be glad to update it any time I make some upgrades for myself.
+Contributions are very welcome. Find the instructions in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
-## Contributing ##
-
-I don't plan to be full-time maintaining this package, but as I'm usually developing in Ionic I'll be glad to update it any time I make some upgrades for myself.
-Contributions are very welcome. The source files can be found in the [repo](https://github.com/RaschidGithub/ionic-header-parallax).
+Feel free to improve the code!
 
 ## Credits ##
 Raschid JF. Rafaelly
 
 <me@raschidjfr.dev>
 
-https://raschidjfr.dev
+<https://raschidjfr.dev>
 
-This is an implementation of this awesome tutorial on v2 by [Josh Morony](https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/). Thanks.
+This is an adaptation of this awesome tutorial on v2 by [Josh Morony](https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/). Thanks.
