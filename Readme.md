@@ -5,7 +5,7 @@ This directive enables parallax effect on `ion-header` elements to display a cov
 > For Ionic 3 use version [1.1.0](https://www.npmjs.com/package/ionic-header-parallax/v/1.1.0) of this package: `$ npm i ionic-header-parallax@1.1.0`.
 
 * [Live Demo](https://raschidjfr.github.io/ionic-header-parallax)
-* [Code Playground](https://stackblitz.com/github/raschidjfr/ionic-header-parallax)
+* [Code Playground](https://stackblitz.com/github/raschidjfr/ionic-header-parallax?file=src%2Fapp%2Fhome%2Fhome.page.html)
 
 ![alt text](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/master/gif.gif)
 
