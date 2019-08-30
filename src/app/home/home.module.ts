@@ -5,7 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+
 import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
+// import { IonicHeaderParallaxModule } from '../../../projects/ionic-header-parallax/src'; // <- Uncoment this to edit library
 
 @NgModule({
   imports: [

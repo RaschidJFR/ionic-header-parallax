@@ -37,7 +37,7 @@ export class ParallaxDirective implements AfterViewInit {
       this.initElements();
       this.initStyles();
       this.initEvents();
-    });
+    }, 100);
   }
 
   initElements() {
