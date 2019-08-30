@@ -7,7 +7,7 @@
     "start": "ionic serve",
     "build": "ng build ionic-header-parallax",
     "build:demo": "ng build --base-href=\".\"",
-    "deploy": "npm run build:demo && npx ngh --dir=\"dist/demo\"",
+    "deploy": "npm run build:demo -- --prod && npx ngh --dir=\"dist/demo\"",
     "predeploy": "ng build ionic-header-parallax && npm run link:library",
     "publish": "npm run build && cp README.md dist/ionic-header-parallax && npm publish ./dist/ionic-header-parallax",
     "install:library": "cd projects/ionic-header-parallax && npm install",
