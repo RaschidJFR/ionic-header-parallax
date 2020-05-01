@@ -13,7 +13,9 @@
     "install:library": "cd projects/ionic-header-parallax && npm install",
     "link:library": "cd dist/ionic-header-parallax && npm link && cd ../.. && npm link ionic-header-parallax",
     "postinstall": "npm run install:library && npm run build && npm run link:library",
-    "watch": "ng build ionic-header-parallax --watch"
+    "watch": "ng build ionic-header-parallax --watch",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "private": true,
   "dependencies": {
@@ -33,7 +35,8 @@
     "ionic-header-parallax": "latest",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.801.2",
@@ -64,5 +67,6 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "snyk": true
 }
