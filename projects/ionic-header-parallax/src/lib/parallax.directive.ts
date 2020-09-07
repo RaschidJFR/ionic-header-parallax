@@ -34,9 +34,14 @@ export class ParallaxDirective implements AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.initElements();
-      this.initStyles();
-      this.initEvents();
+      try {
+        this.initElements();
+        this.initStyles();
+        this.initEvents();
+      } catch (e) {
+        console.log('parallax needs more time to start - starting recursive launch attempts with delay 100ms');
+        this.ngAfterViewInit();
+      }
     }, 100);
   }
 
