@@ -34,9 +34,13 @@ export class ParallaxDirective implements AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.initElements();
-      this.initStyles();
-      this.initEvents();
+      try {
+        this.initElements();
+        this.initStyles();
+        this.initEvents();
+      } catch (e) {
+        this.ngAfterViewInit();
+      }
     }, 100);
   }
 
@@ -90,6 +94,7 @@ export class ParallaxDirective implements AfterViewInit {
     this.scrollContentPaddingTop = window.getComputedStyle(this.scrollContent, null).paddingTop.replace('px', '');
     this.scrollContentPaddingTop = parseFloat(this.scrollContentPaddingTop);
     this.originalToolbarBgColor = window.getComputedStyle(this.toolbarBackground, null).backgroundColor;
+    if (!this.originalToolbarBgColor) { throw new Error('Error: toolbarBackround is null.'); }
 
     // header and title
     this.renderer.setStyle(this.header, 'position', 'relative');
