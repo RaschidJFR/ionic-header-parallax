@@ -7,6 +7,12 @@
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
+    "paths": {
+      "ionic-header-parallax": [
+        "dist/ionic-header-parallax/ionic-header-parallax",
+        "dist/ionic-header-parallax"
+      ]
+    },
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
