@@ -1,4 +1,12 @@
 # Changelog
+
+## Unreleased
+### BREAKING CHANGES
+* Upgraded to Ionic v5 + Angular 12
+
+### Fixed
+* Added recursive initializer to avoid error when view not ready yet (#29) (Thanks @AdaLollA)
+  
 ## [2.1.4](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.4) (2019-08-19)
 ### Changed
 * Added contact details to Readme
