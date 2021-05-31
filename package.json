@@ -1,15 +1,17 @@
 {
   "name": "ionic-header-parallax-test-app",
-  "version": "0.0.1",
+  "version": "3.0.0-dev",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run watch & ng serve",
+    "build": "ng build ionic-header-parallax",
+    "postbuild": "cd dist/ionic-header-parallax && npm link && cd ../.. npm link ionic-header-parallax && cp README.md dist/ionic-header-parallax",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "watch": "npm run build -- --watch"
   },
   "private": true,
   "dependencies": {
