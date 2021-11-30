@@ -1,4 +1,4 @@
-<ion-header parallax imageUrl="https://picsum.photos/1080" maximumHeight="350" expandedColor="#AAA" titleColor="#313131">
+<ion-header translucent parallax imageUrl="https://picsum.photos/1080" maximumHeight="350" expandedColor="#AAA" titleColor="#313131">
 
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
@@ -7,15 +7,34 @@
     <ion-title>
       Parallax Header
     </ion-title>
+    <ion-buttons slot="start">
+      <ion-button>
+        Start
+        <ion-icon name="accessibility-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-button>
-        Button
+        End
+        <ion-icon name="cloudy-night-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button>
+        Primary
+        <ion-icon name="football-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        Secondary
+        <ion-icon name="pizza-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content fullscreen class="ion-padding">
   <p>This directive enables parallax effect on <code>ion-header</code> elements to display a cover photo while on top of
     the page and transition it to the normal navbar when content is scrolled down.</p>
   <h2 id="set-up">Set Up</h2>
@@ -71,7 +90,7 @@
       href="https://github.com/RaschidGithub/ionic-header-parallax">repo</a>.</p>
   <h2 id="credits">Credits</h2>
   <p>Raschid JF. Rafaelly</p>
-  <p><a href="mailto:me@raschidjfr.dev">me@raschidjfr.dev</a></p>
+  <p><a href="mailto:hello@raschidjfr.dev">hello@raschidjfr.dev</a></p>
   <p><a href="https://raschidjfr.dev">https://raschidjfr.dev</a></p>
   <p>This is an implementation of this awesome tutorial on v2 by <a
       href="https://www.joshmorony.com/how-to-create-a-directive-in-ionic-2-parallax-header/">Josh Morony</a>. Thanks.
