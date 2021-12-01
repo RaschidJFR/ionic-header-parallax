@@ -15,7 +15,7 @@ import { IonToolbar, IonButtons, IonTitle } from '@ionic/angular';
 })
 export class ParallaxDirective implements AfterContentInit {
   @Input() imageUrl: string;
-  @Input() expandedColor: string;
+  @Input() color: string;
   @Input() maximumHeight: string | number = 300;
   @Input() showButtonsExpanded = true;
   @Input() backgroundPosition: 'top' | 'center' | 'bottom' = 'top';
@@ -108,7 +108,7 @@ export class ParallaxDirective implements AfterContentInit {
     this.renderer.setStyle(
       this.imageOverlay,
       'background-color',
-      this.expandedColor
+      this.color
     );
 
     this.renderer.setStyle(
