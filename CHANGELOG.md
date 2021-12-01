@@ -1,10 +1,6 @@
 # Changelog
 
-## [3.0.1](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/3.0.1) (2021-11-30)
-
-Alias for v3.0.0-rc
-
-## [3.0.0-rc](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/3.0.0-rc) (2021-11-30)
+## [3.0.2](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/3.0.2) (2021-11-30)
 
 ### BREAKING CHANGES
 

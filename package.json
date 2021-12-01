@@ -1,6 +1,6 @@
 {
   "name": "ionic-header-parallax-test-app",
-  "version": "3.0.0-dev",
+  "version": "3.0.0",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -29,7 +29,7 @@
     "@capacitor/ios": "3.0.0",
     "@capacitor/keyboard": "1.0.0",
     "@ionic/angular": "^5.5.2",
-    "ionic-header-parallax": "^3.0.1",
+    "ionic-header-parallax": "latest",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
