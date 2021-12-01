@@ -44,11 +44,12 @@ export class ParallaxDirective implements AfterContentInit {
   ngAfterContentInit() {
     setTimeout(() => {
       try {
-        this.initElements();
-        this.setupContentPadding();
-        this.setupImageOverlay();
-        this.initEvents();
-        this.updateProgress();
+        if (this.initElements()) {
+          this.setupContentPadding();
+          this.setupImageOverlay();
+          this.setupEvents();
+          this.updateProgress();
+        }
       } catch (e) {
         this.ngAfterContentInit();
       }
@@ -59,19 +60,30 @@ export class ParallaxDirective implements AfterContentInit {
     return this.headerRef.nativeElement;
   }
 
+  /**
+   * Return the value of the input parameter `height` as a string with units.
+   * If no units were provided, it will default to 'px'.
+   */
   getMaxHeightWithUnits() {
     return !isNaN(+this.height) || typeof this.height === 'number'
       ? this.height + 'px'
       : this.height;
   }
 
-  getCurrentHeight() {
-    return this.ionToolbar?.el?.clientHeight;
-  }
-
   private initElements() {
+    if (!this.ionToolbar) {
+      console.error('A <ion-toolbar> element is needed inside <ion-header>');
+      return false;
+    }
+
     const parentElement = this.header.parentElement;
     const ionContent = parentElement.querySelector('ion-content');
+
+    if (!ionContent) {
+      console.error('A <ion-content> element is needed');
+      return false;
+    }
+
     this.innerScroll = ionContent.shadowRoot.querySelector(
       '.inner-scroll'
     ) as HTMLElement;
@@ -84,17 +96,19 @@ export class ParallaxDirective implements AfterContentInit {
     this.toolbarBackground = this.ionToolbar.el.shadowRoot.querySelector(
       '.toolbar-background'
     );
+    this.color = this.color || window.getComputedStyle(this.toolbarBackground).backgroundColor;
 
     this.renderer.setStyle(this.header, 'pointer-events', 'none');
     this.renderer.setStyle(this.toolbarContainer, 'pointer-events', 'all');
     this.renderer.setStyle(this.toolbarContainer, 'align-items', 'baseline');
+    return true;
   }
 
   private setupContentPadding() {
     const parentElement = this.header.parentElement;
     const ionContent = parentElement.querySelector('ion-content');
     const mainContent = ionContent.shadowRoot.querySelector('main');
-    const { paddingTop } = window.getComputedStyle(mainContent, null);
+    const { paddingTop } = window.getComputedStyle(mainContent);
     const calc = `calc(${paddingTop} + ${this.getMaxHeightWithUnits()})`;
     this.renderer.setStyle(this.header, 'position', 'absolute');
     this.renderer.setStyle(this.innerScroll, 'padding-top', calc);
@@ -124,8 +138,8 @@ export class ParallaxDirective implements AfterContentInit {
     this.toolbarBackground.appendChild(this.imageOverlay);
   }
 
-  private initEvents() {
-    this.innerScroll.addEventListener('scroll', (e) => {
+  private setupEvents() {
+    this.innerScroll.addEventListener('scroll', (_event) => {
       if (!this.ticking) {
         window.requestAnimationFrame(() => {
           this.updateProgress();
@@ -136,6 +150,7 @@ export class ParallaxDirective implements AfterContentInit {
     });
   }
 
+  /** Update the parallax effect as per the current scroll of the ion-content */
   updateProgress() {
     const progress = this.calcProgress(this.innerScroll, +this.height);
     this.progressLayerHeight(progress);
