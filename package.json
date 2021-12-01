@@ -11,7 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run build -- --watch",
+    "publish": "cd dist/ionic-header-parallax && npm publish"
   },
   "private": true,
   "dependencies": {
