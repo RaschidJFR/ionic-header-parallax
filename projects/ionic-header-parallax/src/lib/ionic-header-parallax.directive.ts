@@ -17,8 +17,7 @@ export class ParallaxDirective implements AfterContentInit {
   @Input() imageUrl: string;
   @Input() color: string;
   @Input() height: string | number = 300;
-  @Input() showButtonsExpanded = true;
-  @Input() backgroundPosition: 'top' | 'center' | 'bottom' = 'top';
+  @Input() bgPosition: 'top' | 'center' | 'bottom' = 'top';
 
   imageOverlay: HTMLElement;
   private toolbarBackground: HTMLElement;
@@ -44,15 +43,15 @@ export class ParallaxDirective implements AfterContentInit {
 
   ngAfterContentInit() {
     setTimeout(() => {
-      // try {
-      this.initElements();
-      this.setupContentPadding();
-      this.setupImageOverlay();
-      this.initEvents();
-      this.updateProgress();
-      // } catch (e) {
-      //   this.ngAfterViewInit();
-      // }
+      try {
+        this.initElements();
+        this.setupContentPadding();
+        this.setupImageOverlay();
+        this.initEvents();
+        this.updateProgress();
+      } catch (e) {
+        this.ngAfterContentInit();
+      }
     }, 100);
   }
 
@@ -105,11 +104,7 @@ export class ParallaxDirective implements AfterContentInit {
     this.imageOverlay = this.renderer.createElement('div');
     this.renderer.addClass(this.imageOverlay, 'image-overlay');
 
-    this.renderer.setStyle(
-      this.imageOverlay,
-      'background-color',
-      this.color
-    );
+    this.renderer.setStyle(this.imageOverlay, 'background-color', this.color);
 
     this.renderer.setStyle(
       this.imageOverlay,
@@ -123,7 +118,7 @@ export class ParallaxDirective implements AfterContentInit {
     this.renderer.setStyle(
       this.imageOverlay,
       'background-position',
-      this.backgroundPosition
+      this.bgPosition
     );
 
     this.toolbarBackground.appendChild(this.imageOverlay);
