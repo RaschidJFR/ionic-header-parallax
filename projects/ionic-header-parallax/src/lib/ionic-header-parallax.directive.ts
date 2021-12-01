@@ -16,7 +16,7 @@ import { IonToolbar, IonButtons, IonTitle } from '@ionic/angular';
 export class ParallaxDirective implements AfterContentInit {
   @Input() imageUrl: string;
   @Input() color: string;
-  @Input() maximumHeight: string | number = 300;
+  @Input() height: string | number = 300;
   @Input() showButtonsExpanded = true;
   @Input() backgroundPosition: 'top' | 'center' | 'bottom' = 'top';
 
@@ -61,9 +61,9 @@ export class ParallaxDirective implements AfterContentInit {
   }
 
   getMaxHeightWithUnits() {
-    return !isNaN(+this.maximumHeight) || typeof this.maximumHeight === 'number'
-      ? this.maximumHeight + 'px'
-      : this.maximumHeight;
+    return !isNaN(+this.height) || typeof this.height === 'number'
+      ? this.height + 'px'
+      : this.height;
   }
 
   getCurrentHeight() {
@@ -142,14 +142,14 @@ export class ParallaxDirective implements AfterContentInit {
   }
 
   updateProgress() {
-    const progress = this.calcProgress(this.innerScroll, +this.maximumHeight);
+    const progress = this.calcProgress(this.innerScroll, +this.height);
     this.progressLayerHeight(progress);
     this.progressLayerOpacity(progress);
   }
 
   progressLayerHeight(progress: number) {
     const h = Math.max(
-      +this.maximumHeight * (1 - progress),
+      +this.height * (1 - progress),
       this.originalToolbarHeight
     );
     this.renderer.setStyle(this.toolbarContainer, 'height', `${h}px`);
