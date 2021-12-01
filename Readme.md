@@ -64,7 +64,7 @@ Feel free to improve the code!
 ## Credits ##
 Raschid JF. Rafaelly
 
-<me@raschidjfr.dev>
+<hello@raschidjfr.dev>
 
 <https://raschidjfr.dev>
 
