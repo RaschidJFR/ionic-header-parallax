@@ -12,7 +12,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "npm run build -- --watch",
-    "publish": "cd dist/ionic-header-parallax && npm publish"
+    "publish": "cd dist/ionic-header-parallax && npm publish",
+
+    "build:demo": "ng build --base-href=\".\"",
+    "deploy": "npm run build:demo -- --prod && npx ngh --dir=\"dist/demo\"",
+    "predeploy": "npm run build"
   },
   "private": true,
   "dependencies": {
