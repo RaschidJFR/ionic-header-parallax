@@ -16,7 +16,6 @@ import { IonToolbar, IonButtons, IonTitle } from '@ionic/angular';
 export class ParallaxDirective implements AfterContentInit {
   @Input() imageUrl: string;
   @Input() expandedColor: string;
-  @Input() titleColor: string;
   @Input() maximumHeight: string | number = 300;
   @Input() showButtonsExpanded = true;
   @Input() backgroundPosition: 'top' | 'center' | 'bottom' = 'top';
@@ -89,6 +88,7 @@ export class ParallaxDirective implements AfterContentInit {
 
     this.renderer.setStyle(this.header, 'pointer-events', 'none');
     this.renderer.setStyle(this.toolbarContainer, 'pointer-events', 'all');
+    this.renderer.setStyle(this.toolbarContainer, 'align-items', 'baseline');
   }
 
   private setupContentPadding() {
@@ -152,7 +152,7 @@ export class ParallaxDirective implements AfterContentInit {
       +this.maximumHeight * (1 - progress),
       this.originalToolbarHeight
     );
-    this.renderer.setStyle(this.ionToolbar.el, 'height', `${h}px`);
+    this.renderer.setStyle(this.toolbarContainer, 'height', `${h}px`);
     this.renderer.setStyle(this.imageOverlay, 'height', `${h}px`);
   }
 
