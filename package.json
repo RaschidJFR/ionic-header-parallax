@@ -5,9 +5,9 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "npm run watch & ng serve",
+    "start": "ng serve",
     "build": "ng build ionic-header-parallax",
-    "postbuild": "cd dist/ionic-header-parallax && npm link && cd ../.. npm link ionic-header-parallax && cp README.md dist/ionic-header-parallax",
+    "postbuild": "cd dist/ionic-header-parallax && cd ../.. && cp README.md dist/ionic-header-parallax",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

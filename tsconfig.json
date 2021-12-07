@@ -10,7 +10,7 @@
     "downlevelIteration": true,
     "paths": {
       "ionic-header-parallax": [
-        "dist/ionic-header-parallax/ionic-header-parallax",
+        "projects/ionic-header-parallax/src/public-api",
         "dist/ionic-header-parallax"
       ]
     },
