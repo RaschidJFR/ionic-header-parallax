@@ -1,12 +1,11 @@
 # Changelog
-
-## Unreleased
+## [3.1.0](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/3.1.0) (2021-12-09)
 
 ### Changed
 * Increased peerDependency version range to support Angular 13 and Ionic 6 (Thanks [@hakimio](https://github.com/hakimio))
 
 ### Fixed
-* fix(height): string-type inputs not correctly parsed #44
+* fix(height): string-type inputs not correctly parsed (#44)
 
 ## [3.0.2](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/3.0.2) (2021-11-30)
 
