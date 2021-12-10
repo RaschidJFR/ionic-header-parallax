@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+* Increased peerDependency version range to support Angular 13 and Ionic 6 (Thanks [@hakimio](https://github.com/hakimio))
+
+### Fixed
+* fix(height): string-type inputs not correctly parsed #44
+
 ## [3.0.2](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/3.0.2) (2021-11-30)
 
 ### BREAKING CHANGES
@@ -18,7 +26,7 @@
 
 ### Fixed
 
-- Added recursive initializer to avoid error when view not ready yet (#29) (Thanks @AdaLollA)
+- Added recursive initializer to avoid error when view not ready yet (#29) (Thanks [@AdaLollA](https://github.com/AdaLollA))
 - Fixed #34: TypeError: Cannot read property 'style' of null
 
 ## [2.1.4](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/2.1.4) (2019-08-19)
@@ -72,7 +80,7 @@ Upgraded to Ionic 4
 
 ### Removed
 
-- `fadeTitle` attribute no longer needed as it is now the default behaviour.
+- `fadeTitle` attribute no longer needed as it is now the default behavior.
 
 ## [1.1.0](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/1.1.0)
 
