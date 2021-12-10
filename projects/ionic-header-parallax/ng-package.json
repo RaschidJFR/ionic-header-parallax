@@ -4,7 +4,8 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@ionic/angular": "ionicAngular"
+      "@ionic/angular": "ionicAngular",
+      "to-px": "toPx"
     }
   },
   "allowedNonPeerDependencies": ["to-px"]
