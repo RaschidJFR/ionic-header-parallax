@@ -6,5 +6,6 @@
     "umdModuleIds": {
       "@ionic/angular": "ionicAngular"
     }
-  }
+  },
+  "allowedNonPeerDependencies": ["to-px"]
 }
