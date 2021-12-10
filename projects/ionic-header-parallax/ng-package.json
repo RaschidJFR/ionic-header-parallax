@@ -3,5 +3,6 @@
   "dest": "../../dist/ionic-header-parallax",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["to-px"]
 }

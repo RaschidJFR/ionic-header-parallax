@@ -9,6 +9,7 @@ import {
   AfterContentInit,
 } from '@angular/core';
 import { IonToolbar, IonButtons, IonTitle } from '@ionic/angular';
+import toPx from 'to-px';
 
 @Directive({
   selector: 'ion-header[parallax]',
@@ -70,6 +71,10 @@ export class ParallaxDirective implements AfterContentInit {
       : this.height;
   }
 
+  getMaxHeightInPx() {
+    return toPx(this.getMaxHeightWithUnits());
+  }
+
   private initElements() {
     if (!this.ionToolbar) {
       console.error('A <ion-toolbar> element is needed inside <ion-header>');
@@ -109,9 +114,10 @@ export class ParallaxDirective implements AfterContentInit {
     const ionContent = parentElement.querySelector('ion-content');
     const mainContent = ionContent.shadowRoot.querySelector('main');
     const { paddingTop } = window.getComputedStyle(mainContent);
-    const calc = `calc(${paddingTop} + ${this.getMaxHeightWithUnits()})`;
+    const contentPaddingPx = toPx(paddingTop);
+    const coverHeightPx = this.getMaxHeightInPx();
     this.renderer.setStyle(this.header, 'position', 'absolute');
-    this.renderer.setStyle(this.innerScroll, 'padding-top', calc);
+    this.renderer.setStyle(this.innerScroll, 'padding-top', `${contentPaddingPx + coverHeightPx}px`);
   }
 
   private setupImageOverlay() {
@@ -152,14 +158,15 @@ export class ParallaxDirective implements AfterContentInit {
 
   /** Update the parallax effect as per the current scroll of the ion-content */
   updateProgress() {
-    const progress = this.calcProgress(this.innerScroll, +this.height);
+    const h = this.getMaxHeightInPx();
+    const progress = this.calcProgress(this.innerScroll, h);
     this.progressLayerHeight(progress);
     this.progressLayerOpacity(progress);
   }
 
   progressLayerHeight(progress: number) {
     const h = Math.max(
-      +this.height * (1 - progress),
+      this.getMaxHeightInPx() * (1 - progress),
       this.originalToolbarHeight
     );
     this.renderer.setStyle(this.toolbarContainer, 'height', `${h}px`);
