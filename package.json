@@ -15,7 +15,7 @@
     "publish": "cd dist/ionic-header-parallax && npm publish",
 
     "build:demo": "ng build --base-href=\".\"",
-    "deploy": "npm run build:demo -- --prod && npx ngh --dir=\"dist/demo\"",
+    "deploy": "npm run build:demo && npx ngh --dir=\"www\"",
     "predeploy": "npm run build"
   },
   "private": true,
