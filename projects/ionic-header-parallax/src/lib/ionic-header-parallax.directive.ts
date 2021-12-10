@@ -48,6 +48,7 @@ export class ParallaxDirective implements AfterContentInit {
         if (this.initElements()) {
           this.setupContentPadding();
           this.setupImageOverlay();
+          this.setupPointerEventsForButtons();
           this.setupEvents();
           this.updateProgress();
         }
@@ -102,11 +103,16 @@ export class ParallaxDirective implements AfterContentInit {
       '.toolbar-background'
     );
     this.color = this.color || window.getComputedStyle(this.toolbarBackground).backgroundColor;
-
-    this.renderer.setStyle(this.header, 'pointer-events', 'none');
-    this.renderer.setStyle(this.toolbarContainer, 'pointer-events', 'all');
     this.renderer.setStyle(this.toolbarContainer, 'align-items', 'baseline');
     return true;
+  }
+
+  private setupPointerEventsForButtons() {
+    this.renderer.setStyle(this.header, 'pointer-events', 'none');
+    this.ionToolbar
+      .el
+      .querySelectorAll('ion-buttons')
+      .forEach(item => this.renderer.setStyle(item, 'pointer-events', 'all'));
   }
 
   private setupContentPadding() {
