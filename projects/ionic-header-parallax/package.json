@@ -8,6 +8,7 @@
     "@ionic/angular": ">=5.0.0 <7.0.0"
   },
   "dependencies": {
+    "to-px": "^1.1.0",
     "tslib": "^2.1.0"
   },
   "repository": {
