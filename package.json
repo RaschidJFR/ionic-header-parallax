@@ -7,16 +7,16 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build ionic-header-parallax",
-    "postbuild": "cd dist/ionic-header-parallax && cd ../.. && cp Readme.md dist/ionic-header-parallax",
+    "link": "(cd dist/ionic-header-parallax && npm link) && npm link ionic-header-parallax",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "npm run build -- --watch",
-    "publish": "cd dist/ionic-header-parallax && npm publish",
-
-    "build:demo": "ng build --base-href=\".\"",
-    "deploy": "npm run build:demo && npx ngh --dir=\"www\"",
-    "predeploy": "npm run build"
+    "prepublish": "npm run build -- --prod",
+    "publish": "cp Readme.md dist/ionic-header-parallax && (cd dist/ionic-header-parallax && npm publish)",
+    "build:demo": "ng build --base-href=\".\" --prod",
+    "deploy": "npm run build:demo && npx ngh --dir=dist/demo",
+    "predeploy": "npm run build -- --prod"
   },
   "private": true,
   "dependencies": {
@@ -32,7 +32,8 @@
     "@capacitor/haptics": "1.0.0",
     "@capacitor/ios": "3.0.0",
     "@capacitor/keyboard": "1.0.0",
-    "@ionic/angular": "^5.5.2",
+    "@ionic/angular": "^6.0.0",
+    "ionic-header-parallax": "latest",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -68,6 +69,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "^12.0.0",
     "protractor": "~7.0.0",
+    "to-px": "^1.1.0",
     "ts-node": "~8.3.0",
     "typescript": "~4.2.4"
   },
