@@ -2,12 +2,12 @@
 
 This directive enables parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition it to the normal navbar when content is scrolled down.
 
-> For Ionic versions `< 6`, check the [previous tags](https://www.npmjs.com/package/ionic-header-parallax?activeTab=versions) of this package.
+> For Ionic versions `< 7`, check the [previous tags](https://www.npmjs.com/package/ionic-header-parallax?activeTab=versions) of this package.
 
 - [Live Demo](https://raschidjfr.github.io/ionic-header-parallax)
 
-![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/4.0.0/img/ios.gif)
-![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/4.0.0/img/android.gif)
+![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/5.0.0/img/ios.gif)
+![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/5.0.0/img/android.gif)
 
 ## Set Up
 
