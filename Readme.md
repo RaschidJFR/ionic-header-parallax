@@ -2,16 +2,26 @@
 
 This directive enables parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition it to the normal navbar when content is scrolled down.
 
-> For Ionic versions `< 7`, check the [previous tags](https://www.npmjs.com/package/ionic-header-parallax?activeTab=versions) of this package.
+### Compatibility
 
-- [Live Demo](https://raschidjfr.github.io/ionic-header-parallax)
+| Stack                                                                                                          | Tag                                                                             |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| ![](https://img.shields.io/badge/-v7-white?logo=ionic) ![](https://img.shields.io/badge/-v14-red?logo=angular) | [5.x.x](https://www.npmjs.com/package/ionic-header-parallax?activeTab=versions) |
+| ![](https://img.shields.io/badge/-v6-white?logo=ionic) ![](https://img.shields.io/badge/-v13-red?logo=angular) | [4.x.x](https://www.npmjs.com/package/ionic-header-parallax?activeTab=versions) |
+| ![](https://img.shields.io/badge/-v5-white?logo=ionic) ![](https://img.shields.io/badge/-v12-red?logo=angular) | [3.x.x](https://www.npmjs.com/package/ionic-header-parallax?activeTab=versions) |
+| ![](https://img.shields.io/badge/-v4-white?logo=ionic) ![](https://img.shields.io/badge/-v8-red?logo=angular)  | [2.x.x](https://www.npmjs.com/package/ionic-header-parallax?activeTab=versions) |
+
+## Live Demo
+Checkout the Live Demo [here](https://raschidjfr.github.io/ionic-header-parallax)
 
 ![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/5.0.0/img/ios.gif)
 ![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/5.0.0/img/android.gif)
 
+
+
 ## Set Up
 
-1. Install package: `$ npm i ionic-header-parallax`.
+1. Install package: `npm i ionic-header-parallax`.
 2. Import the directive into your desired module (usually `appmodule.ts`):
 
 ```ts
