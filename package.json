@@ -1,6 +1,6 @@
 {
   "name": "ionic-header-parallax-test-app",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -14,9 +14,10 @@
     "watch": "npm run build -- --watch",
     "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
     "publish": "(cd dist/ionic-header-parallax && npm publish)",
+    "postpublish": "npm run deploy",
     "build:demo": "ng build --base-href=\".\" -c production",
-    "deploy": "npm run build:demo && npx ngh --dir=dist/demo",
-    "predeploy": "npm run build -- -c production"
+    "predeploy": "npm run build -- -c production",
+    "deploy": "npm run build:demo && npx ngh --dir=dist/demo"
   },
   "private": true,
   "dependencies": {
