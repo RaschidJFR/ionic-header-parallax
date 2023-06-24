@@ -1,6 +1,6 @@
 {
   "name": "ionic-header-parallax-test-app",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
@@ -13,7 +13,7 @@
     "e2e": "ng e2e",
     "watch": "npm run build -- --watch",
     "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
-    "publish": "(cd dist/ionic-header-parallax && npm publish)",
+    "publish": "cd dist/ionic-header-parallax && npm publish --tag next",
     "postpublish": "npm run deploy",
     "build:demo": "ng build --base-href=\".\" -c production",
     "predeploy": "npm run build -- -c production",
@@ -34,7 +34,7 @@
     "@capacitor/ios": "3.4.3",
     "@capacitor/keyboard": "^1.2.2",
     "@ionic/angular": "^7.1.0",
-    "ionic-header-parallax": "latest",
+    "ionic-header-parallax": "^5.0.0",
     "rxjs": "^7.5.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
