@@ -1,4 +1,9 @@
 # Changelog
+## [4.0.0](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/4.0.0) (2023-06-23)
+### BREAKING CHANGES
+
+- Updated to Ionic6 and Angular v13
+
 ## [3.1.0](https://github.com/RaschidJFR/ionic-header-parallax/releases/tag/3.1.0) (2021-12-09)
 
 ### Changed
