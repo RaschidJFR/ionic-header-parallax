@@ -12,8 +12,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "npm run build -- --watch",
-    "prepublish": "npm run build -- -c production",
-    "publish": "cp Readme.md dist/ionic-header-parallax && (cd dist/ionic-header-parallax && npm publish)",
+    "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
+    "publish": "(cd dist/ionic-header-parallax && npm publish)",
     "build:demo": "ng build --base-href=\".\" -c production",
     "deploy": "npm run build:demo && npx ngh --dir=dist/demo",
     "predeploy": "npm run build -- -c production"
