@@ -118,7 +118,7 @@ export class ParallaxDirective implements AfterContentInit {
   private setupContentPadding() {
     const parentElement = this.header.parentElement;
     const ionContent = parentElement.querySelector('ion-content');
-    const mainContent = ionContent.shadowRoot.querySelector('main');
+    const mainContent = ionContent.shadowRoot.querySelector('[part=scroll]');
     const { paddingTop } = window.getComputedStyle(mainContent);
     const contentPaddingPx = toPx(paddingTop);
     const coverHeightPx = this.getMaxHeightInPx();
