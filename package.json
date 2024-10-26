@@ -9,7 +9,7 @@
     "link": "(cd dist/ionic-header-parallax && npm link) && npm link ionic-header-parallax",
     "watch": "npm run build -- --watch",
     "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
-    "publish": "cd dist/ionic-header-parallax && npm publish --tag next",
+    "publish": "cd dist/ionic-header-parallax && npm publish",
     "postpublish": "npm run deploy",
     "build:demo": "ng build --base-href=\".\" -c production",
     "predeploy": "npm run build -- -c production",
