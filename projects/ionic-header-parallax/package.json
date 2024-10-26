@@ -1,10 +1,10 @@
 {
   "name": "ionic-header-parallax",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "This directive enables parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition it to the normal navbar when content is scrolled down.",
   "peerDependencies": {
-    "@angular/common": ">=14.0.0",
-    "@angular/core": ">=14.0.0",
+    "@angular/common": ">=16.0.0",
+    "@angular/core": ">=16.0.0",
     "@ionic/angular": ">=7.0.0"
   },
   "dependencies": {
@@ -21,7 +21,7 @@
     "header",
     "ion-header"
   ],
-  "author": "Raschid J.F. Rafaelly <hello@raschidjfr.dev> (https://raschidjfr.dev)",
+  "author": "Raschid J.F. Rafaelly (https://github.com/RaschidJFR)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/raschidJFR/ionic-header-parallax/issues"
