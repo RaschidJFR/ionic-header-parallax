@@ -4,13 +4,9 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
-    "ng": "ng",
     "start": "npm run watch & ng serve",
     "build": "ng build ionic-header-parallax",
     "link": "(cd dist/ionic-header-parallax && npm link) && npm link ionic-header-parallax",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "watch": "npm run build -- --watch",
     "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
     "publish": "cd dist/ionic-header-parallax && npm publish --tag next",

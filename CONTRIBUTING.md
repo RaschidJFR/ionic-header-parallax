@@ -1,8 +1,12 @@
 # Contributing
 
+* You'll find the parallax directive's source in [`/projects/ionic-header-parallax/src`](projects/ionic-header-parallax/src).
 * The source code for the demo app [`/src`](src).
-* You'll find the library's source in [`/projects/ionic-header-parallax/src`](projects/ionic-header-parallax/src).
 
 ## Getting Started
-1. Do `npm start` to build and launch the app in watch mode.
-2. Do `npm run link` to link the demo app to the source library project.
+
+In the root folder:
+1. Run `npm run watch` to build the directive in watch mode.
+1. Run `npm run link` to point the demo app to use the local directive's source.
+2. Run `ng serve` to launch the demo app.
+
