@@ -1,6 +1,6 @@
 # Parallax Header Directive for Ionic
 
-This directive enables parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition it to the normal navbar when content is scrolled down.
+This directive enables a parallax effect on `ion-header` elements to display a cover photo while on top of the page and transition to the normal *toolbar* when scrolling down.
 
 ### Compatibility
 
@@ -21,18 +21,30 @@ Checkout the Live Demo [here](https://raschidjfr.github.io/ionic-header-parallax
 | ![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/5.0.0/img/ios.gif) | ![](https://raw.githubusercontent.com/raschidJFR/ionic-header-parallax/5.0.0/img/android.gif) |
 
 ## Set Up
-
 1. Install package: `npm i ionic-header-parallax`.
-2. Import the directive into your desired module (usually `appmodule.ts`):
+2. Import the directive into your desired Module:
 
-```ts
-import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
+    ```ts
+    // app.module.ts
+    
+    import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
 
-@NgModule({
-  imports: [
-    IonicHeaderParallaxModule,
-    ...
-```
+    @NgModule({
+      imports: [
+        IonicHeaderParallaxModule,  // <-
+        ...
+    ```
+    …or standalone Component:
+    ```ts
+    // my-component.page.ts
+
+    import { ParallaxDirective } from 'ionic-header-parallax';
+
+    @Component({
+      imports: [
+        ParallaxDirective,    // <-
+        ...
+    ```
 
 ## Usage
 
@@ -55,7 +67,3 @@ Just add the attribute `parallax` to any `<ion-header>` element:
 | color      | `string`                        | The color (web hex formatted) to show while the header is expanded when no `imageUrl` is set. When scrolled, it will fade to the toolbar's color.           |
 | bgPosition | `'top' \| 'center' \| 'bottom'` | The position of the image in the header. This parameter slightly changes the feeling of the animation. Default: `'top'`                                     |
 
-## Contributing
-
-I don't plan to be maintaining this package full-time, but as I'm usually developing in Ionic I'll be glad to update it any time I make some upgrades for myself.
-Code contributions, issues, and PRs are very welcome. Find the instructions in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
