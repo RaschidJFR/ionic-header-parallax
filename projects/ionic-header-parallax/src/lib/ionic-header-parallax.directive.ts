@@ -13,6 +13,7 @@ import toPx from 'to-px';
 
 @Directive({
   selector: 'ion-header[parallax]',
+  standalone: true,
 })
 export class ParallaxDirective implements AfterContentInit {
   @Input() imageUrl: string;
@@ -183,7 +184,6 @@ export class ParallaxDirective implements AfterContentInit {
   progressLayerOpacity(progress: number) {
     const op = 1 - progress;
     this.renderer.setStyle(this.imageOverlay, 'opacity', op);
-    // this.renderer.setStyle(this.toolbarContainer, 'opacity', progress);
   }
 
   private calcProgress(scrollingElement: HTMLElement, maxHeight: number) {
