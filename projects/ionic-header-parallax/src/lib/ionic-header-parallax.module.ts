@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { ParallaxDirective } from './ionic-header-parallax.directive';
 
 @NgModule({
-  declarations: [
-    ParallaxDirective
-  ],
   imports: [
+    ParallaxDirective
   ],
   exports: [
     ParallaxDirective
