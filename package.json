@@ -4,13 +4,12 @@
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
   "scripts": {
-    "start": "npm run watch & ng serve",
+    "start": "ng serve",
     "build": "ng build ionic-header-parallax",
     "link": "(cd dist/ionic-header-parallax && npm link) && npm link ionic-header-parallax",
     "watch": "npm run build -- --watch",
     "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
     "publish": "cd dist/ionic-header-parallax && npm publish",
-    "postpublish": "npm run deploy",
     "build:demo": "ng build --base-href=\".\" -c production",
     "predeploy": "npm run build -- -c production",
     "deploy": "npm run build:demo && npx ngh --dir=dist/demo"
@@ -30,7 +29,7 @@
     "@capacitor/ios": "3.4.3",
     "@capacitor/keyboard": "^1.2.2",
     "@ionic/angular": "^8.3.3",
-    "ionic-header-parallax": "^5.0.0",
+    "ionic-header-parallax": "^6.1.0",
     "rxjs": "^7.5.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.13.3"
