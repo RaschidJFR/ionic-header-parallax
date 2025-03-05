@@ -1,0 +1,5 @@
+{
+  "stdout": false,
+  "ignoreCommitPattern": "^chore[:\\(]|^docs?[:\\(]|^build[:\\(]|^ci[:\\(]",
+  "breakingPattern": "!:"
+}
