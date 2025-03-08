@@ -1,7 +1,7 @@
 {
-  "name": "Ionic Header Parallax Test App",
+  "name": "demo",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular-standalone"
 }
