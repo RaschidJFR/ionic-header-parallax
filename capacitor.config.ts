@@ -1,10 +1,9 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'Ionic Header Parallax Test App',
-  webDir: 'www',
-  bundledWebRuntime: false
+  appName: 'demo',
+  webDir: 'www'
 };
 
 export default config;
