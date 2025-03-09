@@ -5,7 +5,6 @@ import {
   Renderer2,
   AfterContentInit,
 } from '@angular/core';
-import { IonToolbar } from '@ionic/angular';
 import toPx from 'to-px';
 
 @Directive({
@@ -24,7 +23,7 @@ export class ParallaxDirective implements AfterContentInit {
   private originalToolbarHeight = 0;
   private ticking = false;
   private toolbarContainer: HTMLDivElement | null = null;
-  private ionToolbar: IonToolbar & { el: HTMLIonToolbarElement; } | null = null;
+  private ionToolbar: HTMLElement | null = null;
 
   constructor(
     private headerRef: ElementRef<HTMLElement>,
@@ -70,14 +69,14 @@ export class ParallaxDirective implements AfterContentInit {
 
   private initElements() {
     try {
-      this.ionToolbar = this.ionToolbar || this.headerRef.nativeElement.querySelector('ion-toolbar') as any;
+      this.ionToolbar = this.ionToolbar || this.headerRef.nativeElement.querySelector('ion-toolbar');
       if (!this.ionToolbar) {
         console.error('A <ion-toolbar> element is needed inside <ion-header>');
         return false;
       } else {
-        this.originalToolbarHeight = this.ionToolbar.el.offsetHeight;
-        this.toolbarContainer = this.ionToolbar.el.shadowRoot?.querySelector('.toolbar-container') || null;
-        this.toolbarBackground = this.ionToolbar.el.shadowRoot?.querySelector('.toolbar-background') || null;
+        this.originalToolbarHeight = this.ionToolbar.offsetHeight;
+        this.toolbarContainer = this.ionToolbar.shadowRoot?.querySelector('.toolbar-container') || null;
+        this.toolbarBackground = this.ionToolbar.shadowRoot?.querySelector('.toolbar-background') || null;
         this.color = this.color || (
           this.toolbarBackground && window.getComputedStyle(this.toolbarBackground).backgroundColor
         ) || '';
@@ -107,8 +106,8 @@ export class ParallaxDirective implements AfterContentInit {
 
   private setupPointerEventsForButtons() {
     this.renderer.setStyle(this.header, 'pointer-events', 'none');
-    this.ionToolbar?.el
-      .querySelectorAll('ion-buttons')
+    this.ionToolbar
+      ?.querySelectorAll('ion-buttons')
       .forEach(item => this.renderer.setStyle(item, 'pointer-events', 'all'));
   }
 
