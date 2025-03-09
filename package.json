@@ -5,6 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "start": "ng serve",
+    "prebuild": "(cd projects/ionic-header-parallax && npm i)",
     "build": "ng build ionic-header-parallax",
     "link": "(cd dist/ionic-header-parallax && npm link) && npm link ionic-header-parallax",
     "watch": "npm run build -- --watch",
