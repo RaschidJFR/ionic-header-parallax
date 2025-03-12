@@ -10,3 +10,8 @@ In the root folder:
 1. Run `npm run link` to point the demo app to use the local directive's source.
 2. Run `ng serve` to launch the demo app.
 
+### Test
+1. Build: `npm run build -- -c production`
+2. Test with Docker: `bin/test.sh`
+
+
