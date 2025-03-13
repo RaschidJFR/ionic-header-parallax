@@ -1,0 +1,29 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: raschidjfr/ionic-blank:ionic8-angular19-cypress14
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies and build project
+      run: npm ci
+
+    - name: Run tests
+      working-directory: /app
+      run: |
+          PKG_VERSION=$(cd $GITHUB_WORKSPACE/dist/ionic-header-parallax && npm pkg get version | tr -d '"')
+          mkdir cypress
+          cp -r $GITHUB_WORKSPACE/cypress/* ./cypress
+          cp $GITHUB_WORKSPACE/cypress.config.ts .
+          cp -r $GITHUB_WORKSPACE/src/app/home/* ./src/app/home
+          npm i $GITHUB_WORKSPACE/dist/ionic-header-parallax/ionic-header-parallax-$PKG_VERSION.tgz
+          ng serve --host 0.0.0.0 --port 4200 &
+          (wait-on http://0.0.0.0:4200 --timeout 30000 --interval 1000 && cypress run --headless) \
+          || { echo 'Angular server failed to start'; exit 1; }

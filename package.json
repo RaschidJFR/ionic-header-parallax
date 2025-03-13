@@ -7,6 +7,7 @@
     "start": "ng serve",
     "prebuild": "(cd projects/ionic-header-parallax && npm i)",
     "build": "ng build ionic-header-parallax",
+    "postbuild": "(cd dist/ionic-header-parallax && npm pack)",
     "link": "(cd dist/ionic-header-parallax && npm link) && npm link ionic-header-parallax",
     "watch": "npm run build -- --watch",
     "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
@@ -15,7 +16,8 @@
     "predeploy": "npm run build -- -c production",
     "postdeploy": "npm run changelog",
     "deploy": "npm run build:demo && npx ngh --dir=dist/demo",
-    "changelog": "npx --yes auto-changelog"
+    "changelog": "npx --yes auto-changelog",
+    "test": "bin/test.sh"
   },
   "private": true,
   "dependencies": {
@@ -53,6 +55,7 @@
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
+    "cypress": "^14.1.0",
     "eslint": "^9.16.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",
