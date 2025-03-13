@@ -11,7 +11,7 @@ In the root folder:
 2. Run `ng serve` to launch the demo app.
 
 ### Test
-1. Build: `npm run build -- -c production`
+1. Build: `npm run build`
 2. Test with Docker: `bin/test.sh`
 
 
