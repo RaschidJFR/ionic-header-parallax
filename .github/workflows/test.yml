@@ -12,8 +12,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install dependencies and build project
+    - name: Install dependencies
       run: npm ci
+
+    - name: Build project
+      run: npm run build
 
     - name: Run tests
       working-directory: /app
@@ -23,7 +26,7 @@ jobs:
           cp -r $GITHUB_WORKSPACE/cypress/* ./cypress
           cp $GITHUB_WORKSPACE/cypress.config.ts .
           cp -r $GITHUB_WORKSPACE/src/app/home/* ./src/app/home
-          npm i $GITHUB_WORKSPACE/dist/ionic-header-parallax/ionic-header-parallax-$PKG_VERSION.tgz
+          npm i $GITHUB_WORKSPACE/dist/ionic-header-parallax-$PKG_VERSION.tgz
           ng serve --host 0.0.0.0 --port 4200 &
           (wait-on http://0.0.0.0:4200 --timeout 30000 --interval 1000 && cypress run --headless) \
           || { echo 'Angular server failed to start'; exit 1; }
