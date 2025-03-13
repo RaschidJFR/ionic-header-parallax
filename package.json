@@ -5,16 +5,18 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "start": "ng serve",
-    "build": "ng build ionic-header-parallax",
+    "prebuild": "(cd projects/ionic-header-parallax && npm i)",
+    "build": "ng build ionic-header-parallax -c production",
+    "postbuild": "(cd dist/ionic-header-parallax && npm pack ----pack-destination ..)",
     "link": "(cd dist/ionic-header-parallax && npm link) && npm link ionic-header-parallax",
-    "watch": "npm run build -- --watch",
-    "prepublish": "npm run build -- -c production && cp Readme.md dist/ionic-header-parallax",
-    "publish": "cd dist/ionic-header-parallax && npm publish",
+    "watch": "ng build ionic-header-parallax --watch",
+    "publish": "cd dist/ionic-header-parallax && cp ../../Readme.md . && npm publish",
     "build:demo": "ng build --base-href=\".\" -c production",
-    "predeploy": "npm run build -- -c production",
-    "postdeploy": "npm run changelog",
+    "predeploy": "npm run build",
     "deploy": "npm run build:demo && npx ngh --dir=dist/demo",
-    "changelog": "npx --yes auto-changelog"
+    "postdeploy": "npm run changelog",
+    "changelog": "npx --yes auto-changelog",
+    "test": "bin/test.sh"
   },
   "private": true,
   "dependencies": {
@@ -52,6 +54,7 @@
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
+    "cypress": "^14.1.0",
     "eslint": "^9.16.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",

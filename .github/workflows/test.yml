@@ -1,0 +1,42 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test-angular19:
+    runs-on: ubuntu-latest
+    container:
+      image: raschidjfr/ionic-blank:ionic8-angular19-cypress14
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build
+
+    - name: Run tests
+      working-directory: /app
+      run: bash $GITHUB_WORKSPACE/.github/workflows/run-tests.sh
+
+  test-angular16:
+    runs-on: ubuntu-latest
+    container:
+      image: raschidjfr/ionic-blank:ionic8-angular16-cypress14
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build
+
+    - name: Run tests
+      working-directory: /app
+      run: bash $GITHUB_WORKSPACE/.github/workflows/run-tests.sh
