@@ -27,6 +27,9 @@ run_test() {
       || { echo 'Angular server failed to start'; exit 1; })"
 }
 
-ng_version="${1:-19}"
-echo "Testing library in Ionic v8 and Angular v$ng_version..."
-run_test $ng_version
+echo "Testing library in Ionic v8 and Angular v19..."
+run_test 19
+echo "Ionic v8 and Angular v19 tests successful!"
+echo "Testing library in Ionic v8 and Angular v16..."
+run_test 16
+echo "Ionic v8 and Angular v16 tests successful!"
