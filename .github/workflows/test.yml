@@ -1,0 +1,35 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build project
+      run: npm run build -- -c production
+
+    - name: Run tests in Docker
+      uses: docker://raschidjfr/ionic-blank:ionic8-angular19-cypress14
+      with:
+        args: bash -c "\
+          mkdir cypress \
+          && cp -r /github/workspace/cypress/* ./cypress \
+          && cp /github/workspace/cypress.config.ts . \
+          && cp -r /github/workspace/src/app/home/* ./src/app/home \
+          && npm i /github/workspace/dist/ionic-header-parallax-$(cd /github/workspace/dist/ionic-header-parallax && npm pkg get version).tgz \
+          && ng serve --host 0.0.0.0 --port 4200 \
+          & (wait-on http://0.0.0.0:4200 --timeout 30000 --interval 1000 && cypress run --headless) \
+          || { echo 'Angular server failed to start'; exit 1; }"
